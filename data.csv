@@ -1,0 +1,18 @@
+id,first time,second time,first time with shuffle,second time with shuffle, Gamer, Age, gender
+1,17,14,13,19,TRUE,25,m
+2,19,20,19,19,TRUE,23,f
+3,17,19,18,20,TRUE,19,f
+4,13,16,9,10,FALSE,19,f
+5,12,16,10,12,FALSE,21,f
+6,20,20,20,20,TRUE,27,f
+7,20,20,19,16,TRUE,22,m
+8,20,20,17,20,TRUE,23,m
+9,20,20,17,18,TRUE,23,m
+10,20,20,18,19,TRUE,40,m
+11,17,18,15,18,FALSE,45,f
+12,10,11,10,10,FALSE,46,f
+13,17,17,18,19,FALSE,20,m
+14,6,10,7,8,FALSE,81,m
+15,20,20,20,20,TRUE,39,m
+16,13,13,15,18,FALSE,40,m
+17,17,18,18,18,FALSE,20,f

@@ -1,0 +1,103 @@
+---
+title: "Statistical Methods 6 Protfolio"
+author: "Yousef Aldawoud"
+date: "10th June 2020"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+---
+
+
+**StudentID : 18038023**
+
+[Web version](https://yousef-aldawoud.github.com/statistics-portfolio)
+
+[GitHub](https://github.com/yousef-aldawoud/statistics-portfolio)
+
+# Analyzing score data set of a color game
+
+## Background
+
+Playing video games was one of the hobbies I grew up doing and loving. Playing video games can give you some enjoyment while challenging your skills. In this analysis I try to answer some questions that might show some behavior difference between gamers and non-gamers 
+
+## Introduction
+
+Color game is a game where you have to pick the right color within the time limit.
+There are two modes of the game.
+
+**Normal mode**
+
+The game will ask you to choose a color from 4 options within 3 seconds. The default number of questions is 20. It can be changed but in this case we stuck to 20 question per person
+
+**Example :** <span style='color:white;background:red;padding:2px;'>red</span>
+
+**Shuffled colors mode**
+The game will ask you to choose a word from 4 options where colors and words are shuffled .
+
+**Example :** <span style='color:white;background:green;padding:2px;'>red</span>
+
+The default number of questions is 20. It can be changed but in this case we stuck to 20 question per person.
+
+You can play the game on this [link](https://yousef-aldawoud.github.io/color-game/)
+
+### Dataset 
+
+The data set collected shows the scores of the games played twice in both modes.
+It also show you the age, gender, and if the person is a gamer (plays video-games casually)
+The dataset is assigned IDs to keep the names anonymous.
+
+**Reading dataset**
+
+```{r data_read, echo=FALSE}
+library(knitr)
+game_data = read.csv('data.csv');
+kable(head(game_data));
+```
+
+#### Columns
+
+**ID**: a sudo id for the users to keep them anonymous.
+
+**First time** : How much the player scored in the first try (normal mode).
+
+**Second time** : How much the player scored in the second try (normal mode).
+
+**First time with shuffle** : How much the player scored in the second try (shuffled mode).
+
+**Second time with shuffle** : How much the player scored in the second try (shuffled mode).
+
+**Gamer** : plays video games casually.
+
+**Age** : player's age.
+
+**Gender** : player's gender (m for male, f for female).
+
+
+
+
+
+#### Data summary
+
+```{r data_summary, echo=FALSE}
+kable(summary(game_data));
+```
+
+The observations are as follows:
+
+There are `17` observations. 
+9 males 8 females and 9 gamers (people who casually play games) and 8 people who don't play games.
+
+
+### First score in the game:
+
+In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
+Which made me question weather all players are going to score more than 15.
+
+My null hypothises is that the number of scores in the first try is greater than the second try
+
+```{r t_test, echo=TRUE}
+observed_first_score <-game_data$first.time
+observed_second_score <-game_data$second.time
+boxplot(observed_first_score,observed_second_score)
+```
