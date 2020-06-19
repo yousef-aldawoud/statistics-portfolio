@@ -1,3 +1,6 @@
+html{
+    scroll-behavior: smooth;
+}
 body{
     margin: 0;
     padding: 0;
@@ -22,13 +25,21 @@ body{
 }
 
 .side-title{
+    margin-top: 80px;
     position: fixed;
     box-shadow: 0px 1px 1px 0px grey;
     width: 20%;
     background: white;
 }
 
+.section{
+    padding-top: 60px;
+}
+
 .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 3;
     font-family: 'Righteous';
     display: flex;
     justify-content: space-between;

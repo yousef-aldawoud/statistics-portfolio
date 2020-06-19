@@ -86,6 +86,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="#gamers" class="no-link f-12">
+                        Casual gamers and gender
+                        <div class="line"></div>
+                    </a>
+                </li>
+
             </ul>
         </div>
 
@@ -95,7 +102,7 @@
             <h1>Statistics portfolio</h1>
             <h2>Analyzing score data set of a color game</h2>
             
-            <div id="background">
+            <div id="background" class="section">
 
                 <h2>Background</h2>
 
@@ -109,13 +116,13 @@ cat("p-value = ",pValue)
                 </pre>
             </div>
 
-            <div id="introduction">
+            <div id="introduction" class="section">
                 
                 <h2>Introduction</h2>
                 
                 <p>Color game is a game where you have to pick the right color within the time limit. There are two modes of the game.</p>
                 
-                <div id="normal-mode">
+                <div id="normal-mode" class="section">
 
                     <h3>Normal mode</h3>
     
@@ -128,7 +135,7 @@ cat("p-value = ",pValue)
 
                 </div>
 
-                <div id="other-mode">
+                <div id="other-mode" class="section">
                     <h3>Shuffled colors mode</h3>
                     <p>The game will ask you to choose a word from 4 options where colors and words are shuffled.</p> 
                     
@@ -145,7 +152,7 @@ cat("p-value = ",pValue)
                 </div>
 
 
-                <div id="dataset">
+                <div id="dataset" class="section">
                     <h2>Dataset</h2>
                     <p>
                         The data set collected shows the scores of the games played twice in both modes. It also show you the age, gender, and if the person is a gamer (plays video-games casually) The dataset is assigned IDs to keep the names anonymous.
@@ -236,7 +243,7 @@ kable(head(game_data));
                             </tbody>
                         </table>
                     </div>
-                    <div id="attributes">
+                    <div id="attributes" class="section">
 
                         <h3>Attributes</h3>
                         
@@ -276,7 +283,7 @@ kable(head(game_data));
                             
                         </ul>
 
-                        <div id="data-summary">
+                        <div id="data-summary" class="section">
 
                             <h3>Data summary</h3>
                             <pre class="prettyprint lang-python3">
@@ -372,7 +379,7 @@ kable(summary(game_data));
                             <p>There are <code>17</code> observations. 9 males 8 females and 9 gamers (people who casually play games) and 8 people who don’t play games.</p>
 
                         </div>
-                        <div id="first-second-score">
+                        <div id="first-second-score" class="section">
                             <h2>First and second score (normal mode)</h2>
                             <p>
                                 In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
@@ -400,7 +407,7 @@ cat("p-value = ",pValue)
                             <p>We fail to reject the null hypothises because the p-value is more than 0.05</p>
                         </div>
 
-                        <div>
+                        <div id="gamers" class="section">
                             <h2>Casual gamers and gender</h2>
                             <p>
                             One of the questions I asked people before starting the game is weather they usually play video games as a hobby. 
