@@ -92,12 +92,32 @@ There are `17` observations.
 ### First score in the game:
 
 In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
-Which made me question weather all players are going to score more than 15.
+Which made me question weather all players are going to score the more in the second try than the first try
 
-My null hypothises is that the number of scores in the first try is greater than the second try
+My null hypothises is that the number of scores in the second try is less than the first try
 
 ```{r t_test, echo=TRUE}
-observed_first_score <-game_data$first.time
-observed_second_score <-game_data$second.time
-boxplot(observed_first_score,observed_second_score)
+observed_first_score <-game_data$first.time;
+observed_second_score <-game_data$second.time;
+boxplot(observed_first_score,observed_second_score, names = c('first time','second time'));
+pValue = t.test(observed_first_score,observed_second_score, alternative = "less")$p.value;
+cat("p-value = ",pValue)
 ```
+
+We fail to reject the null hypothises because the p-value is more than 0.05
+
+
+### Casual gamers 
+
+One of the questions I asked people before starting the game is weather they usually play video games as a hobby. 
+Video games being one of the hobbies that I enjoy I always hear that there are more male players than female players.
+Which I wanted to see weather this is a true statement or just a false stereotype.
+My null hypothises is that there being a casual gamer is dependant from the gender variable.
+
+```{r fisher_test,echo=TRUE}
+contingencyTable = table(game_data$gender,game_data$Gamer);
+kable(contingencyTable);
+fisher.test(contingencyTable)
+```
+
+since the p-value is less that 0.05 we can reject the null hypothises. It seems that that most gamers are males.
