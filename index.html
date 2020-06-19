@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics portfolio</title>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -27,23 +28,414 @@
         <div class="side-title hidden-sm">
             <ul class="titles">
                 <li>
-                    <a href="#" class="no-link">
-                        Item one
+                    <a href="#background" class="no-link">
+                        Background
                         <div class="line"></div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="no-link">
-                        Item two
+                    <a href="#introduction" class="no-link">
+                        Introduction
+                        <div class="line"></div>
+                    </a>
+
+                    <ul class="sub-items">
+                        <li>
+                            <a href="#normal-mode" class="no-link f-12">
+                                Normal mode
+                                <div class="line"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#other-mode" class="no-link f-12">
+                                shuffled colors mode
+                                <div class="line"></div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+                
+                <li>
+                    <a href="#dataset" class="no-link">
+                        Dataset
+                        <div class="line"></div>
+                    </a>
+                    <ul class="sub-items">
+                        <li>
+                            <a href="#attributes" class="no-link f-12">
+                                Attributes
+                                <div class="line"></div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#data-summary" class="no-link f-12">
+                                Data summary
+                                <div class="line"></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#first-second-score" class="no-link f-12">
+                        First and second score (nomral mode)
                         <div class="line"></div>
                     </a>
                 </li>
-                
+
             </ul>
         </div>
+
+
+
         <div class="main">
             <h1>Statistics portfolio</h1>
+            <h2>Analyzing score data set of a color game</h2>
             
+            <div id="background">
+
+                <h2>Background</h2>
+
+                <p>
+                    Playing video games was one of the hobbies I grew up doing and loving. Playing video games can give you some enjoyment while challenging your skills. In this analysis I try to answer some questions that might show some behavior difference between gamers and non-gamers
+                </p>
+                
+                <pre class="prettyprint lang-python3">
+pValue = t.test(observed_first_score,observed_second_score, alternative = "less")$p.value;
+cat("p-value = ",pValue)
+                </pre>
+            </div>
+
+            <div id="introduction">
+                
+                <h2>Introduction</h2>
+                
+                <p>Color game is a game where you have to pick the right color within the time limit. There are two modes of the game.</p>
+                
+                <div id="normal-mode">
+
+                    <h3>Normal mode</h3>
+    
+                    <p>The game will ask you to choose a color from 4 options within 3 seconds. The default number of questions is 20. It can be changed but in this case we stuck to 20 question per person</p>
+    
+                    <div>
+                        <strong>Example </strong> 
+                        <span style="background:red;color:white;padding:2px;">red</span>
+                    </div>
+
+                </div>
+
+                <div id="other-mode">
+                    <h3>Shuffled colors mode</h3>
+                    <p>The game will ask you to choose a word from 4 options where colors and words are shuffled.</p> 
+                    
+                    <div>
+                        <strong>Example </strong> 
+                        <span style="background:green;color:white;padding:2px;">red</span>
+                    </div>
+                    <p>
+                        The default number of questions is 20. It can be changed but in this case we stuck to 20 question per person.
+                    </p>
+                    <p>
+                        You can play the game on this <a href="https://yousef-aldawoud.github.io/color-game/" target="_blank">link</a>
+                    </p>
+                </div>
+
+
+                <div id="dataset">
+                    <h2>Dataset</h2>
+                    <p>
+                        The data set collected shows the scores of the games played twice in both modes. It also show you the age, gender, and if the person is a gamer (plays video-games casually) The dataset is assigned IDs to keep the names anonymous.
+                    </p>
+                    <h4>Reading dataset</h4>                    
+
+                    <pre class="prettyprint lang-python3">
+library(knitr)
+game_data = read.csv('data.csv');
+kable(head(game_data));
+                    </pre>
+                    
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                            <tr class="header">
+                                <th align="right">id</th>
+                                <th align="right">first time</th>
+                                <th align="right">second time</th>
+                                <th align="right">first time.with.shuffle</th>
+                                <th align="right">second time with shuffle</th>
+                                <th align="left">Gamer</th>
+                                <th align="right">Age</th>
+                                <th align="left">gender</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="odd">
+                                <td align="right">1</td>
+                                <td align="right">17</td>
+                                <td align="right">14</td>
+                                <td align="right">13</td>
+                                <td align="right">19</td>
+                                <td align="left">TRUE</td>
+                                <td align="right">25</td>
+                                <td align="left">m</td>
+                            </tr>
+                            <tr class="even">
+                                <td align="right">2</td>
+                                <td align="right">19</td>
+                                <td align="right">20</td>
+                                <td align="right">19</td>
+                                <td align="right">19</td>
+                                <td align="left">TRUE</td>
+                                <td align="right">23</td>
+                                <td align="left">f</td>
+                            </tr>
+                            <tr class="odd">
+                                <td align="right">3</td>
+                                <td align="right">17</td>
+                                <td align="right">19</td>
+                                <td align="right">18</td>
+                                <td align="right">20</td>
+                                <td align="left">FALSE</td>
+                                <td align="right">19</td>
+                                <td align="left">f</td>
+                            </tr>
+                            <tr class="even">
+                                <td align="right">4</td>
+                                <td align="right">13</td>
+                                <td align="right">16</td>
+                                <td align="right">9</td>
+                                <td align="right">10</td>
+                                <td align="left">FALSE</td>
+                                <td align="right">19</td>
+                                <td align="left">f</td>
+                            </tr>
+                            <tr class="odd">
+                                <td align="right">5</td>
+                                <td align="right">12</td>
+                                <td align="right">16</td>
+                                <td align="right">10</td>
+                                <td align="right">12</td>
+                                <td align="left">FALSE</td>
+                                <td align="right">21</td>
+                                <td align="left">f</td>
+                            </tr>
+                            <tr class="even">
+                                <td align="right">6</td>
+                                <td align="right">20</td>
+                                <td align="right">20</td>
+                                <td align="right">20</td>
+                                <td align="right">20</td>
+                                <td align="left">FALSE</td>
+                                <td align="right">27</td>
+                                <td align="left">f</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="attributes">
+
+                        <h3>Attributes</h3>
+                        
+                        <ul>
+                            <li>
+                                <strong>ID</strong>
+                                a sudo id for the users to keep them anonymous.
+                            </li>
+                            <li>
+                                <strong>First time</strong>
+                                : How much the player scored in the first try (normal mode).
+                            </li>
+                            <li>
+                                <strong>First time</strong>
+                                : How much the player scored in the first try (normal mode).
+                            </li>
+                            <li>
+                                <strong>Second time</strong>
+                                : How much the player scored in the second try (normal mode).
+                            </li>
+                            <li>
+                                <strong>First time with shuffle</strong>
+                                : How much the player scored in the first try (shuffled mode).
+                            </li>
+                            <li>
+                                <strong>Second time with shuffle</strong> : How much the player scored in the second try (shuffled mode).
+                            </li>
+                            <li>
+                                <strong>Gamer</strong> : : plays video games casually.
+                            </li>
+                            <li>
+                                <strong>Age</strong>: player's age.
+                            </li>
+                            <li>
+                                <strong>Gender</strong>: player's gender (m for male, f for female).
+                            </li>
+                            
+                        </ul>
+
+                        <div id="data-summary">
+
+                            <h3>Data summary</h3>
+                            <pre class="prettyprint lang-python3">
+kable(summary(game_data));
+                            </pre>
+                            <div style="overflow-x: auto;">
+                            
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr class="header">
+                                            <th align="center">id</th>
+                                            <th align="center">first time</th>
+                                            <th align="center">second time</th>
+                                            <th align="left">first time with shuffle</th>
+                                            <th align="left">second time with shuffle</th>
+                                            <th align="center">Gamer</th>
+                                            <th align="center">Age</th>
+                                            <th align="left">gender</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            
+                                            <td align="center">Min. : 1</td>
+                                            <td align="center">Min. : 6.00</td>
+                                            <td align="center">Min. :10.00</td>
+                                            <td align="left">Min. : 7.00</td>
+                                            <td align="left">Min. : 8.00</td>
+                                            <td align="center">Mode :logical</td>
+                                            <td align="center">Min. :19.00</td>
+                                            <td align="left">f:8</td>
+                                        </tr>
+                                        <tr class="even">
+                                            
+                                            <td align="center">1st Qu.: 5</td>
+                                            <td align="center">1st Qu.:13.00</td>
+                                            <td align="center">1st Qu.:16.00</td>
+                                            <td align="left">1st Qu.:13.00</td>
+                                            <td align="left">1st Qu.:16.00</td>
+                                            <td align="center">FALSE:10</td>
+                                            <td align="center">1st Qu.:21.00</td>
+                                            <td align="left">m:9</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            
+                                            <td align="center">Median : 9</td>
+                                            <td align="center">Median :17.00</td>
+                                            <td align="center">Median :18.00</td>
+                                            <td align="left">Median :17.00</td>
+                                            <td align="left">Median :18.00</td>
+                                            <td align="center">TRUE :7</td>
+                                            <td align="center">Median :23.00</td>
+                                            <td align="left">NA</td>
+                                        </tr>
+                                        <tr class="even">
+                                            
+                                            <td align="center">Mean : 9</td>
+                                            <td align="center">Mean :16.35</td>
+                                            <td align="center">Mean :17.18</td>
+                                            <td align="left">Mean :15.47</td>
+                                            <td align="left">Mean :16.71</td>
+                                            <td align="center">NA</td>
+                                            <td align="center">Mean :31.35</td>
+                                            <td align="left">NA</td>
+                                        </tr>
+                                        <tr class="odd">
+                                            
+                                            <td align="center">3rd Qu.:13</td>
+                                            <td align="center">3rd Qu.:20.00</td>
+                                            <td align="center">3rd Qu.:20.00</td>
+                                            <td align="left">3rd Qu.:18.00</td>
+                                            <td align="left">3rd Qu.:19.00</td>
+                                            <td align="center">NA</td>
+                                            <td align="center">3rd Qu.:40.00</td>
+                                            <td align="left">NA</td>
+                                        </tr>
+                                        <tr class="even">
+                                            
+                                            <td align="center">Max. :17</td>
+                                            <td align="center">Max. :20.00</td>
+                                            <td align="center">Max. :20.00</td>
+                                            <td align="left">Max. :20.00</td>
+                                            <td align="left">Max. :20.00</td>
+                                            <td align="center">NA</td>
+                                            <td align="center">Max. :81.00</td>
+                                            <td align="left">NA</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <p>The observations are as follows:</p>
+                            <p>There are <code>17</code> observations. 9 males 8 females and 9 gamers (people who casually play games) and 8 people who don’t play games.</p>
+
+                        </div>
+                        <div id="first-second-score">
+                            <h2>First and second score (normal mode)</h2>
+                            <p>
+                                In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
+Which made me question weather all players are going to score the more in the second try than the first try
+
+                            </p>
+                            <p>My null hypothises is that the number of scores in the second try is less than the first try</p>
+
+                            <pre class="prettyprint lang-python3">
+observed_first_score <-game_data$first.time;
+observed_second_score <-game_data$second.time;
+boxplot(observed_first_score,observed_second_score, names = c('first time','second time'));
+                            </pre>
+                            
+                            <img src="./imgs/boxplot_first_second.png" alt=""/>
+                            <pre class="prettyprint lang-python3">
+pValue = t.test(observed_first_score,observed_second_score, alternative = "less")$p.value;
+cat("p-value = ",pValue)
+                            </pre>
+
+                            <h4>Output</h4>
+
+                            <pre class="prettyprint">## p-value =  0.2652658</pre>
+
+                            <p>We fail to reject the null hypothises because the p-value is more than 0.05</p>
+                        </div>
+
+                        <div>
+                            <h2>Casual gamers and gender</h2>
+                            <p>
+                            One of the questions I asked people before starting the game is weather they usually play video games as a hobby. 
+                            Video games being one of the hobbies that I enjoy I always hear that there are more male players than female players.
+                            Which I wanted to see weather this is a true statement or just a false stereotype.
+                            My null hypothises is that there being a casual gamer is dependant from the gender variable.
+                            </p>
+                            <pre class="prettyprint lang-python3">
+contingencyTable = table(game_data$gender,game_data$Gamer);
+kable(contingencyTable);
+fisher.test(contingencyTable)
+                            </pre>
+                            <h4>Output</h4>
+                            <pre class="prettyprint lang-python3">
+## 
+##  Fisher's Exact Test for Count Data
+## 
+## data:  contingencyTable
+## p-value = 0.04977
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##    0.8564753 728.9937469
+## sample estimates:
+## odds ratio 
+##   11.63911
+                            </pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
     </div>
 

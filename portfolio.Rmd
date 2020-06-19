@@ -55,7 +55,7 @@ game_data = read.csv('data.csv');
 kable(head(game_data));
 ```
 
-#### Columns
+#### Attributes
 
 **ID**: a sudo id for the users to keep them anonymous.
 
@@ -79,7 +79,7 @@ kable(head(game_data));
 
 #### Data summary
 
-```{r data_summary, echo=FALSE}
+```{r data_summary, echo=TRUE}
 kable(summary(game_data));
 ```
 

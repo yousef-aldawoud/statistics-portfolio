@@ -8,7 +8,7 @@ body{
     padding-top: 10px;
     padding-left: 5px;
     padding-right: 5px;
-    margin: 0 15%;
+    margin: 0 10%;
     display: flex;
     background:#F5F5F5;
     justify-content: space-between;
@@ -18,13 +18,13 @@ body{
     box-shadow: 0px 1px 1px 0px grey;
     padding : 10px;
     background: white;
-    width : 75%;
+    width : 70%;
 }
 
 .side-title{
     position: fixed;
     box-shadow: 0px 1px 1px 0px grey;
-    width: 15%;
+    width: 20%;
     background: white;
 }
 
@@ -80,7 +80,20 @@ body{
 .titles li:hover .line{
     width:80px;
     transition: all 700ms;
+
 }
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+pre{
+    background: rgb(226, 226, 226);
+    border: 1px black solid;
+    overflow-x: auto;
+}
+
 .line{
     height: 3px;;
     background: #000;
@@ -90,16 +103,24 @@ body{
 .titles li::before{
     position: absolute;
     top:8px;
-    left : -9px;
+    left : -8px;
     content: "";
     display: block;
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 7px;
+    min-height: 7px;
     border:3px solid rgb(170, 51, 255);
     background: white;
     border-radius: 10px;
 
 
+}
+
+.sub-items{
+    padding: 1px;
+}
+
+.f-12{
+    font-size: 12pt;
 }
 
 @media only screen and (max-width: 840px) {
@@ -118,4 +139,23 @@ body{
     .navbar-title{
         font-size: 19pt;
     }
+}
+
+.prettyprint{
+    word-wrap: break-word !important;
+    padding: 20px!important;
+    font-size: 11pt;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th,td{
+    padding: 3px;
 }
