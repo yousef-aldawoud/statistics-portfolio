@@ -3,9 +3,10 @@ title: "Statistical Methods 6 Portfolio"
 author: "Yousef Aldawoud"
 date: "10th June 2020"
 output:
+  pdf_document: default
   html_document:
-    theme: cosmo
     highlight: tango
+    theme: cosmo
 ---
 
 
@@ -20,6 +21,11 @@ output:
 ## Background
 
 Playing video games was one of the hobbies I grew up doing and loving. Playing video games can give you some enjoyment while challenging your skills. In this analysis I try to answer some questions that might show some behavior difference between gamers and non-gamers 
+
+
+**My PS4 console**
+
+![My playstation 4 console](./imgs/per.jpg)
 
 ## Introduction
 
@@ -89,7 +95,7 @@ There are `17` observations.
 9 males 8 females and 9 gamers (people who casually play games) and 8 people who don't play games.
 
 
-### First score in the game:
+## First score in the game:
 
 In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
 Which made me question whether all players are going to score the more in the second try than the first try
@@ -107,7 +113,7 @@ cat("p-value = ",pValue)
 We fail to reject the null hypothesis because the p-value is more than 0.05
 
 
-### Casual gamers 
+## Casual gamers 
 
 One of the questions I asked people before starting the game is whether they usually play video games as a hobby. 
 Video games being one of the hobbies that I enjoy I always hear that there are more male players than female players.
@@ -123,7 +129,7 @@ fisher.test(contingencyTable)
 since the p-value is less that 0.05 we can reject the null hypothesis. It seems that that most gamers are males.
 
 
-### Game Score with shuffling
+## Game Score with shuffling
 
 When playing the game with the shuffled mode most players started scoring less that they used too.
 I had players take two rounds on the shuffled colors mode. I wanted to know whether people will usually score more.
@@ -144,7 +150,7 @@ summary(linear_reg_mode)
 
 Since the p-value is less than 0.05 which means we can reject the null hypothesis. Meaning that the score in the first round will effect the score in the second round and people are more likely to score more in the second round in the shuffled mode
 
-### Age
+## Age
 
 One of the questions I asked people after finishing their game is their age. I collected this data to see if the age of a person effects the score.
 The null hypothesis is that the coefficients associated with Age and Score points
@@ -168,7 +174,7 @@ summary(linear_reg_mode_age)
 Since the p-value is more than 0.05 we fail to reject the null hypothesis. We need more data to test our hypothesis.
 
 
-### Game score
+## Game score
 
 Since the data set has the score for both levels I wanted to check whether the shuffled mode had greater score than the normal mode
 
