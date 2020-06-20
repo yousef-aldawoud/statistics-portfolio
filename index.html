@@ -119,8 +119,12 @@
 
 
 
-        <div class="main">
-            <h1>Statistics portfolio</h1>
+        <div class="main section">
+            <h1 class="main-title">Statistics portfolio</h1>
+            <div style="font-size: 9pt;">
+                <span>by Yousef Aldawoud </span><br/>
+               <strong>10th June 2020</strong>
+            </div>
             <h2>Analyzing score data set of a color game</h2>
             
             <div id="background" class="section">
@@ -439,8 +443,29 @@ cat("p-value = ",pValue)
                             <pre class="prettyprint lang-python3">
 contingencyTable = table(game_data$gender,game_data$Gamer);
 kable(contingencyTable);
-fisher.test(contingencyTable)
                             </pre>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr class="header">
+                                    <th></th>
+                                        <th align="right">FALSE</th>
+                                        <th align="right">TRUE</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>f</td>
+                                            <td align="right">7</td>
+                                            <td align="right">1</td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td>m</td>
+                                            <td align="right">3</td>
+                                    <td align="right">6</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <pre class="prettyprint lang-python3">fisher.test(contingencyTable)</pre>
                             <h4>Output</h4>
                             <pre class="prettyprint lang-python3">
 ## 
@@ -455,7 +480,7 @@ fisher.test(contingencyTable)
 ## odds ratio 
 ##   11.63911
                             </pre>
-
+<p>since the p-value is less that 0.05 we can reject the null hypothesis. It seems that that most gamers are males.</p>
                         </div>
 
                     </div>
