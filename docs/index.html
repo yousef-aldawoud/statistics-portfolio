@@ -93,6 +93,27 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="#game-shuff" class="no-link f-12">
+                        Game Score with shuffling
+                        <div class="line"></div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#score" class="no-link f-12">
+                        Game score
+                        <div class="line"></div>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#conclusion" class="no-link f-12">
+                        Conclusion
+                        <div class="line"></div>
+                    </a>
+                </li>
+
             </ul>
         </div>
 
@@ -413,7 +434,7 @@ cat("p-value = ",pValue)
                             One of the questions I asked people before starting the game is weather they usually play video games as a hobby. 
                             Video games being one of the hobbies that I enjoy I always hear that there are more male players than female players.
                             Which I wanted to see weather this is a true statement or just a false stereotype.
-                            My null hypothises is that there being a casual gamer is dependant from the gender variable.
+                            My null hypothises is that there being a casual gamer is independent from the gender variable.
                             </p>
                             <pre class="prettyprint lang-python3">
 contingencyTable = table(game_data$gender,game_data$Gamer);
@@ -442,6 +463,140 @@ fisher.test(contingencyTable)
                 </div>
 
 
+            </div>
+
+            <div id="game-shuff" class="section">
+                <h2>Game Score with shuffling</h2>
+                <p>
+                    When playing the game with the shuffled mode most players started scoring less that they used too. I had players take two rounds on the shuffled colors mode. I wanted to know whether people will usually score more.
+                </p>
+                <strong>Plotting the data</strong>
+                <pre class="prettyprint lang-python3">
+linear_reg_mode = lm(game_data$first.time.with.shuffle~game_data$second.time.with.shuffle,game_data);
+plot(game_data$first.time.with.shuffle~game_data$second.time.with.shuffle,game_data);
+abline(linear_reg_mode)
+                </pre>
+
+                <h4>Output</h4>
+
+                <img src="./imgs/linear_reg_shuff.png" alt=""/>
+
+                <p>
+                    The null Hypothesis is that the coefficients associated with both scores is equal to zero.
+                </p>
+                <pre class="prettyprint lang-python3">summary(linear_reg_mode)</pre>
+                <h4>Output</h4>
+                <pre class="prettyprint lang-python3">
+## 
+## Call:
+## lm(formula = game_data$first.time.with.shuffle ~ game_data$second.time.with.shuffle, 
+##     data = game_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5775 -1.1487  0.3409  1.3409  4.1777 
+## 
+## Coefficients:
+##                                    Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                          0.1278     2.0820   0.061    0.952    
+## game_data$second.time.with.shuffle   0.9184     0.1214   7.568 1.69e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.955 on 15 degrees of freedom
+## Multiple R-squared:  0.7925, Adjusted R-squared:  0.7786 
+## F-statistic: 57.27 on 1 and 15 DF,  p-value: 1.694e-06
+                    </pre>
+                    <p>
+                        Since the p-value is less than 0.05 which means we can reject the null hypothesis. Meaning that the score in the first round will effect the score in the second round and people are more likely to score more in the second round in the shuffled mode
+                    </p>
+
+
+            </div>
+            <div id="age">
+                <h2>Age</h2>
+                <p>
+                    One of the questions I asked people after finishing their game is their age. I collected this data to see if the age of a person effects the score. The null hypothesis is that the coefficients associated with Age and Score points
+                </p>
+                <strong>Plotting data</strong>
+                <pre class="prettyprint lang-python3">
+linear_reg_mode_age = lm(game_data$first.time~game_data$Age);
+plot(game_data$first.time~game_data$Age);
+abline(linear_reg_mode_age)
+                </pre>
+                <img src="./imgs/age.png" alt="">
+                
+                <p>
+                    We can see in the plotted data points that there are many gaps in the age. Which might affect our test. The null Hypothesis is that the coefficients associated with both scores is equal to zero.
+                </p>
+
+                <pre class="prettyprint lang-python3">summary(linear_reg_mode_age)</pre>
+                <h4>Output</h4>
+
+                <pre class="prettyprint lang-python3">
+## 
+## Call:
+## lm(formula = game_data$first.time ~ game_data$Age)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.9719 -2.0008 -0.3464  2.3409  4.9992 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   21.25575    1.88038   11.30 9.74e-09 ***
+## game_data$Age -0.15637    0.05374   -2.91   0.0108 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.441 on 15 degrees of freedom
+## Multiple R-squared:  0.3608, Adjusted R-squared:  0.3182 
+## F-statistic: 8.466 on 1 and 15 DF,  p-value: 0.01078
+                </pre>
+                
+                <p>
+                    Since the p-value is more than 0.05 we fail to reject the null hypothesis. We need more data to test our hypothesis.
+                </p>
+
+            </div>
+            <div id="score" class="section">
+                <h2>Game score</h2>
+                <p>Since the data set has the score for both levels I wanted to check whether the shuffled mode had greater score than the normal mode</p>
+                <p>My null hypothesis is that the score in the shuffled mode is greater than the data in the normal mode</p>
+                <pre class="prettyprint lang-python3">boxplot(game_data$first.time,game_data$first.time.with.shuffle)</pre>
+                <h4>Output</h4>
+                <img src="./imgs/score2.png" alt="">
+                <pre class="prettyprint lang-python3">t.test(game_data$first.time,game_data$first.time.with.shuffle, alternative = "greater")</pre>
+                <pre class="prettyprint lang-python3">
+## 
+##  Welch Two Sample t-test
+## 
+## data:  game_data$first.time and game_data$first.time.with.shuffle
+## t = 0.6182, df = 32, p-value = 0.2704
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -1.535342       Inf
+## sample estimates:
+## mean of x mean of y 
+##  16.35294  15.47059
+                </pre>
+                <p>
+                    Since the p-value is more than 0.05 we fail to reject the null hypthises. We might need more data to achieve to test our hypothesis.
+                </p>
+            </div>
+            <div id="conclusion">
+                <h2>Conclusion</h2>
+                
+                <p>
+                    The data set seems to provide some valuable results, We test whether the second play score will be greater than first play 
+                    score which we failed to test since the p-value is more than 0.05. We also tested weather the number of male gamers are more 
+                    than female gamers which is true most players are males since our fisher.test had a p-value less than 0.05. When looking at 
+                    the relation between the first round and the second round in the shuffled mode scores we notice that people usually score more 
+                    in the second. When using the age to create a linear regression model it didn’t work properly due to gaps in the age data.
+                     When comparing the first round and the first round we had not enough evidence to support our claim that people will score 
+                     more in the round with shuffled colors
+                </p>
+                <p>Looking at the data set we learned some truth, however if we had more records to analyze it will provide more valuable information</p>
             </div>
         </div>
     </div>
