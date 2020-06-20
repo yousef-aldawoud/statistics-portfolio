@@ -1,5 +1,5 @@
 ---
-title: "Statistical Methods 6 Protfolio"
+title: "Statistical Methods 6 Portfolio"
 author: "Yousef Aldawoud"
 date: "10th June 2020"
 output:
@@ -92,9 +92,9 @@ There are `17` observations.
 ### First score in the game:
 
 In the data set we have many people who scored high scores from the start such as 20 and 19. Given it is their first time playing the game
-Which made me question weather all players are going to score the more in the second try than the first try
+Which made me question whether all players are going to score the more in the second try than the first try
 
-My null hypothises is that the number of scores in the second try is less than the first try
+My null hypothesis is that the number of scores in the second try is less than the first try
 
 ```{r t_test, echo=TRUE}
 observed_first_score <-game_data$first.time;
@@ -104,15 +104,15 @@ pValue = t.test(observed_first_score,observed_second_score, alternative = "less"
 cat("p-value = ",pValue)
 ```
 
-We fail to reject the null hypothises because the p-value is more than 0.05
+We fail to reject the null hypothesis because the p-value is more than 0.05
 
 
 ### Casual gamers 
 
-One of the questions I asked people before starting the game is weather they usually play video games as a hobby. 
+One of the questions I asked people before starting the game is whether they usually play video games as a hobby. 
 Video games being one of the hobbies that I enjoy I always hear that there are more male players than female players.
-Which I wanted to see weather this is a true statement or just a false stereotype.
-My null hypothises is that there being a casual gamer is dependant from the gender variable.
+Which I wanted to see whether this is a true statement or just a false stereotype.
+My null hypothesis is that there being a casual gamer is independent from the gender variable.
 
 ```{r fisher_test,echo=TRUE}
 contingencyTable = table(game_data$gender,game_data$Gamer);
@@ -120,4 +120,74 @@ kable(contingencyTable);
 fisher.test(contingencyTable)
 ```
 
-since the p-value is less that 0.05 we can reject the null hypothises. It seems that that most gamers are males.
+since the p-value is less that 0.05 we can reject the null hypothesis. It seems that that most gamers are males.
+
+
+### Game Score with shuffling
+
+When playing the game with the shuffled mode most players started scoring less that they used too.
+I had players take two rounds on the shuffled colors mode. I wanted to know whether people will usually score more.
+
+**Plotting the data** 
+
+```{r lm_plot,echo=TRUE}
+linear_reg_mode = lm(game_data$first.time.with.shuffle~game_data$second.time.with.shuffle,game_data);
+plot(game_data$first.time.with.shuffle~game_data$second.time.with.shuffle,game_data);
+abline(linear_reg_mode)
+```
+
+The null Hypothesis is that the coefficients associated with both scores is equal to zero.
+
+```{r lm_r,echo=TRUE}
+summary(linear_reg_mode)
+```
+
+Since the p-value is less than 0.05 which means we can reject the null hypothesis. Meaning that the score in the first round will effect the score in the second round and people are more likely to score more in the second round in the shuffled mode
+
+### Age
+
+One of the questions I asked people after finishing their game is their age. I collected this data to see if the age of a person effects the score.
+The null hypothesis is that the coefficients associated with Age and Score points
+
+**Plotting data**
+
+
+```{r lm_age_plot,echo=TRUE}
+linear_reg_mode_age = lm(game_data$first.time~game_data$Age);
+plot(game_data$first.time~game_data$Age);
+abline(linear_reg_mode_age)
+```
+
+We can see in the plotted data points that there are many gaps in the age. Which might affect our test.
+The null Hypothesis is that the coefficients associated with both scores is equal to zero.
+
+```{r lm_r2,echo=TRUE}
+summary(linear_reg_mode_age)
+```
+
+Since the p-value is more than 0.05 we fail to reject the null hypothesis. We need more data to test our hypothesis.
+
+
+### Game score
+
+Since the data set has the score for both levels I wanted to check whether the shuffled mode had greater score than the normal mode
+
+My null hypothesis is that the score in the shuffled mode is greater than the data in the normal mode
+
+```{r d,echo=TRUE}
+boxplot(game_data$first.time,game_data$first.time.with.shuffle)
+t.test(game_data$first.time,game_data$first.time.with.shuffle, alternative = "greater")
+```
+
+Since the p-value is more than 0.05 we fail to reject the null hypthises. We might need more data to achieve to test our hypothesis.
+
+
+## Conclusion
+
+The data set seems to provide some valuable results, We test whether the second play score will be greater than first play score which we failed to test since the p-value is more than 0.05.
+We also tested weather the number of male gamers are more than female gamers which is true most players are males since our fisher.test had a p-value less than 0.05.
+When looking at the relation between the first round and the second round in the shuffled mode scores we notice that people usually score more in the second.
+When using the age to create a linear regression model it didn't work properly due to gaps in the age data.
+When comparing the first round and the first round we had not enough evidence to support our claim that people will score more in the round with shuffled colors
+
+Looking at the data set we learned some truth, however if we had more records to analyze it will provide more valuable information
